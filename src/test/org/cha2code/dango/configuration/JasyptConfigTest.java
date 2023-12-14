@@ -14,8 +14,8 @@ class JasyptConfigTest {
         StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
         encryptor.setPassword("password");
 
-        System.out.println("url : " + encryptor.encrypt("jdbc:mysql://localhost:3306/dango_db"));
-        System.out.println("username : " + encryptor.encrypt("dango"));
+        System.out.println("url : " + encryptor.encrypt("jdbc:mysql://localhost:3306/dangoDB"));
+        System.out.println("username : " + encryptor.encrypt("dangodang"));
         System.out.println("password : " + encryptor.encrypt("!dango2312"));
 
         System.out.println("");
