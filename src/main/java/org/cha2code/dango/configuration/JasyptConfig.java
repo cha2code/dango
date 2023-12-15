@@ -1,5 +1,6 @@
 package org.cha2code.dango.configuration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
@@ -12,9 +13,9 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author cha2jini
  */
+@Slf4j
 @Configuration
 public class JasyptConfig {
-
     /** 환경변수에 대한 비밀번호 저장 */
     @Value("${jasypt.encryptor.password}")
     String password;
@@ -26,19 +27,26 @@ public class JasyptConfig {
      */
     @Bean
     public StringEncryptor jasyptStringEncryptor() {
-
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
 
         config.setPassword(password);
-        config.setAlgorithm("PBEWITHHMACSHA512ANDAES_256");
+        // 암호화 알고리즘
+        config.setAlgorithm("PBEWithMD5AndDES");
+        // 반복할 해싱 회수
         config.setKeyObtentionIterations("1000");
+        // 인스턴스 pool
         config.setPoolSize("1");
+
         config.setProviderName("SunJCE");
+        // salt 생성 클래스
         config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
-        config.setIvGeneratorClassName("org.jasypt.iv.RandomIvGenerator");
+        //인코딩 방식
         config.setStringOutputType("base64");
+
         encryptor.setConfig(config);
+
+        log.info("jasypt encryptor bean created!");
 
         return encryptor;
     }
