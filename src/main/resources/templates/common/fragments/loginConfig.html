@@ -1,0 +1,74 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:th="http://www.thymeleaf.org">
+	<head th:fragment="loginConfig">
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1" name="viewport">
+		<meta content="ie=edge" http-equiv="x-ua-compatible">
+		<!--/* hys, IntelliJ 등에서 하기 구문이 에러로 표현될 수 있으나, 개발툴의 버그이므로 무시할 것  */-->
+		<title layout:title-pattern="$LAYOUT_TITLE :: $CONTENT_TITLE">Dango Admin</title>
+		<!-- Common css -->
+		<link href="/common/common.css" rel="stylesheet" type="text/css">
+		<!-- sweetalert2 -->
+		<link href="/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css" rel="stylesheet" type="text/css">
+		<!-- Font Awesome -->
+		<link href="/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+		<!-- Ionicons -->
+		<link href="/dist/css/ionicons.min.css" rel="stylesheet" type="text/css">
+		<!-- iCheck -->
+		<link href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" type="text/css">
+		<!-- JQVMap -->
+		<link href="/plugins/jqvmap/jqvmap.min.css" rel="stylesheet" type="text/css">
+		<!-- Theme style -->
+		<link href="/dist/css/adminlte.min.css" rel="stylesheet" type="text/css">
+		<!-- overlayScrollbars -->
+		<link href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" rel="stylesheet" type="text/css">
+		<!-- bootstrap-switch -->
+		<link href="/plugins/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet" type="text/css">
+
+		<!-- Custom CSS -->
+		<style rel="stylesheet" th:inline="css">
+			.nav-item a.nav-link.r-menu {
+				font-size: 18px;
+				font-weight: 500;
+			}
+		</style>
+
+		<!-- sweetalert2 -->
+		<script src="/plugins/sweetalert2/sweetalert2.min.js"></script>
+		<!-- jQuery -->
+		<script src="/plugins/jquery/jquery.min.js"></script>
+		<!-- jQuery UI 1.11.4 -->
+		<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+		<script>
+			$.widget.bridge("uibutton", $.ui.button);
+		</script>
+		<!-- Bootstrap 4 -->
+		<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Sparkline -->
+		<script src="/plugins/sparklines/sparkline.js"></script>
+		<!-- moment -->
+		<script src="/plugins/moment/moment.min.js"></script>
+		<!-- AdminLTE App -->
+		<script src="/dist/js/adminlte.js"></script>
+
+		<!-- Dango Admin Common Code Library -->
+		<script src="/js/util/common.js"></script>
+
+		<!-- Dango Common Utility Library -->
+		<script src="/common/dango.common.js"></script>
+		<!-- Dango String Utility Library -->
+		<script src="/common/dango.string.js"></script>
+
+		<script src="/js/login.js"></script>
+
+		<!-- Custom JS Function -->
+		<script>			$(document).ready(function() {
+				// 비밀번호가 만료됐을 경우
+				const isPwNonExpired = /*[[${isPwNonExpired}]]*/ true;
+				if (!isPwNonExpired) {
+					executePwChange();
+				}
+			});
+		</script>
+	</head>
+</html>

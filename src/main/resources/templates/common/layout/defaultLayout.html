@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1" name="viewport">
+		<meta content="ie=edge" http-equiv="x-ua-compatible">
+		<!--  csrf token  -->
+	<!--
+		<meta name="_csrf" th:content="${_csrf.token}">
+		<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	-->
+		<!--/* hys, IntelliJ 등에서 하기 구문이 에러로 표현될 수 있으나, 개발툴의 버그이므로 무시할 것  */-->
+		<title layout:title-pattern="$LAYOUT_TITLE :: $CONTENT_TITLE">Dango Admin</title>
+
+		<th:block th:replace="~{common/fragments/commonConfig :: commonConfig}"></th:block>
+		<!-- NHN Toast UI DateTimePicker -->
+		<link href="/plugins/toast/timepicker/css/tui-time-picker.css" rel="stylesheet" type="text/css">
+		<link href="/plugins/toast/datepicker/css/tui-date-picker.css" rel="stylesheet" type="text/css">
+
+		<!-- Custom CSS -->
+		<style rel="stylesheet">
+			.nav-item a.nav-link.r-menu {
+				font-size: 18px;
+				font-weight: 500;
+			}
+		</style>
+
+		<!-- ChartJS -->
+		<script src="/plugins/chart.js/Chart.min.js"></script>
+		<!-- JQVMap -->
+		<script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
+		<script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+		<!-- jQuery Knob Chart -->
+		<script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
+		<!-- overlayScrollbars -->
+		<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+		<!-- bootstrap-switch -->
+		<script src="/plugins/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
+		<!-- NHN Toast UI DateTimePicker -->
+		<script src="/plugins/toast/timepicker/tui-time-picker.js"></script>
+		<script src="/plugins/toast/datepicker/tui-date-picker.js"></script>
+
+		<script src="/js/util/passwordChange.js"></script>
+
+		<!-- Custom JS Function -->
+		<script type="text/javascript">
+			// 비밀번호 만료 플래그
+			const isPwNonExpired = /*[[${isPwNonExpired}]]*/ true;
+
+			<!-- document ready -->
+			document.addEventListener("DOMContentLoaded", () => {
+				window.setTimeout(() => {
+					// 비밀번호가 만료된 경우 비밀번호 변경 팝업 노출
+					if (!isPwNonExpired) {
+						executePwChange();
+					}
+				}, 500);
+			});
+		</script>
+	</head>
+	<body class="hold-transition sidebar-mini layout-fixed">
+		<div class="wrapper">
+			<!-- Preloader -->
+			<div th:replace="~{common/fragments/preloader :: preloader}"></div>
+			<!-- aside -->
+			<aside th:replace="~{common/fragments/aside :: aside}"></aside>
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				<div th:replace="~{common/fragments/header :: header}"></div>
+				<th:block layout:fragment="content"></th:block>
+			</div>
+			<!-- /.content-wrapper -->
+		</div>
+		<!-- ./wrapper -->
+	</body>
+</html>

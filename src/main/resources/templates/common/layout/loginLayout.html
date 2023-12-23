@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1" name="viewport">
+		<meta content="ie=edge" http-equiv="x-ua-compatible">
+		<!--/* csrf token */-->
+		<!--/*
+			<meta name="_csrf" th:content="${_csrf.token}">
+			<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+			*/-->
+		<!--/* hys, IntelliJ 등에서 하기 구문이 에러로 표현될 수 있으나, 개발툴의 버그이므로 무시할 것  */-->
+		<title layout:title-pattern="$LAYOUT_TITLE :: $CONTENT_TITLE">Dango Admin</title>
+
+		<th:block th:replace="~{common/fragments/commonConfig :: commonConfig}"></th:block>
+	</head>
+
+	<body layout:fragment="content"></body>
+</html>

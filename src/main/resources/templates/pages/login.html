@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko"
+      layout:decorate="~{common/layout/loginLayout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Login</title>
+	</head>
+
+	<th:block layout:fragment="contentCss">
+		<!-- Custom CSS -->
+		<style rel="stylesheet" th:inline="css">
+			.nav-item a.nav-link.r-menu {
+				font-size: 18px;
+				font-weight: 500;
+			}
+		</style>
+	</th:block>
+	<body class="hold-transition login-page" layout:fragment="content">
+		<div class="login-box" style="width:30% !important; min-width: 500px;">
+			<div class="login-logo">
+				<span><b>Dango Admin</b></span>
+			</div>
+			<!-- /.login-logo -->
+			<div class="card">
+				<div class="card-body login-card-body">
+					<p class="login-box-msg">Sign in to start your session</p>
+
+					<form action="/login" id="loginForm" method="post">
+						<!-- CSRF -->
+						<!--<input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>-->
+						<div class="input-group mb-3">
+							<input autofocus class="form-control" id="username" name="username" placeholder="username" type="text">
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-location-arrow"></span>
+								</div>
+							</div>
+						</div>
+						<div class="input-group mb-3">
+							<input class="form-control" id="password" name="password" placeholder="password" type="password">
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-lock"></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<!-- /.col -->
+							<div class="col-12">
+								<button class="btn btn-primary btn-block" id="submitBtn" type="submit">Sign In</button>
+							</div>
+							<!-- /.col -->
+						</div>
+					</form>
+
+				</div>
+				<!-- /.login-card-body -->
+			</div>
+		</div>
+		<!-- /.login-box -->
+
+		<!-- user/login 화면에서 사용하는 javascript -->
+		<script th:inline="javascript" type="text/javascript">
+			<!-- document Ready -->
+			const resultMessage = /*[[${resultMessage}]]*/"";
+
+			document.addEventListener("DOMContentLoaded", () => {
+				if (StringUtil.isNotEmpty(resultMessage)) {
+					$("#username").select();
+					Swal.fire({icon : "error", title : "로그인 실패", html : resultMessage});
+				}
+			});
+
+			$(document).ready(function() {
+				// 비밀번호가 만료됐을 경우
+				const isPwNonExpired = /*[[${isPwNonExpired}]]*/ true;
+				if (!isPwNonExpired) {
+					executePwChange();
+				}
+			});
+		</script>
+	</body>
+</html>

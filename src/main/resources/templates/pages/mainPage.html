@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko"
+      layout:decorate="~{common/layout/defaultLayout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Index</title>
+
+		<!--/*Inline Custom CSS Library import */-->
+		<th:block layout:fragment="contentCss">
+		</th:block>
+
+		<!--/*Inline Custom CSS Code*/-->
+		<style rel="stylesheet" th:inline="css">
+		</style>
+
+		<!--/*Inline Custom JS Library import */-->
+		<th:block layout:fragment="contentScript">
+		</th:block>
+
+		<!--/*Inline Custom JS Code*/-->
+		<script type="text/javascript">
+		</script>
+	</head>
+	<body>
+		<!-- Main content -->
+		<div layout:fragment="content">
+			<section class="content">
+				<div class="container-fluid">
+					<!-- /.row -->
+					<h2>Content 영역입니다. 테스트 중</h2>
+				</div><!-- /.container-fluid -->
+			</section>
+		</div>
+		<!-- /.content -->
+	</body>
+</html>
