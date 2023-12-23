@@ -24,6 +24,4 @@ class JasyptConfigTest {
         //System.out.println("username : " + encryptor.decrypt("Bc8mL9zZyOJ9Q47EHaiY0Px9mpYn0xOj"));
         //System.out.println("password : " + encryptor.decrypt("NfAqAfurxNw7E2dOn2g7pMCLYm0+zXmS"));
     }
-
-    }
 }
