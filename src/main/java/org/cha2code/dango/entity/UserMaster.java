@@ -2,8 +2,11 @@ package org.cha2code.dango.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.cha2code.dango.dto.UserMasterDto;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,4 +32,20 @@ public class UserMaster extends BaseAuditorEntity {
 
 	@Column(name = "user_role", nullable = false, length = 400)
 	private String userRole;
+
+	@Column(name = "password_modified_at")
+	private LocalDateTime passwordModifiedAt;
+
+	public UserMasterDto toDTO() {
+		return new UserMasterDto(userId,
+		                         "",
+		                         nickname,
+		                         email,
+		                         userRole,
+								 passwordModifiedAt,
+		                         getCreateUser(),
+								 getCreateDate(),
+								 getModifyUser(),
+		                         getModifyDate());
+	}
 }

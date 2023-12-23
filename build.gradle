@@ -39,12 +39,14 @@ dependencies {
 
     // Thymeleaf 및 Spring Security용 DSL
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    //implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    // ThymeLeaf Layout
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.3.0'
 
     // Spring 프로퍼티 자동완성
     implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
-    //implementation "com.h2database:h2"
+    implementation "com.h2database:h2"
     implementation 'junit:junit:4.13.1'
 
     // Lombok, 보일러 플레이트 생략용
@@ -55,6 +57,7 @@ dependencies {
 
     // MySQL Connector
     runtimeOnly 'com.mysql:mysql-connector-j'
+    runtimeOnly "com.h2database:h2"
 
     annotationProcessor 'org.projectlombok:lombok'
 

@@ -20,7 +20,7 @@ public class WebSecurityConfig {
 		    .csrf(AbstractHttpConfigurer::disable);
 
 		http.authorizeHttpRequests(req -> req.requestMatchers("/res/**", "/login", "login").permitAll()
-		                                     .anyRequest().authenticated())
+		                                     .anyRequest().permitAll())
 		    .formLogin(Customizer.withDefaults())
 		    .logout(Customizer.withDefaults());
 
