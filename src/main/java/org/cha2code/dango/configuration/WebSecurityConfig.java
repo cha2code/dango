@@ -19,8 +19,7 @@ public class WebSecurityConfig {
 		http.cors(AbstractHttpConfigurer::disable)
 		    .csrf(AbstractHttpConfigurer::disable);
 
-		http.authorizeHttpRequests(req -> req.requestMatchers("/res/**", "/login", "login").permitAll()
-		                                     .anyRequest().permitAll())
+		http.authorizeHttpRequests((req -> req.anyRequest().permitAll()))
 		    .formLogin(Customizer.withDefaults())
 		    .logout(Customizer.withDefaults());
 
@@ -33,7 +32,7 @@ public class WebSecurityConfig {
 	@Bean
 	public InMemoryUserDetailsManager userDetailsService() {
 		UserDetails admin = User.withUsername("admin")
-		                        .password("$2a$10$tcuW33l.uYGHCNc5o6Gqc.LrQiGKHRx30/q.I6uTdXJNwx0juL4t.")
+		                        .password("mQYqGpeEZwhPo0CvturXUoE/bno6Jq8o")
 		                        .authorities("admin")
 		                        .build();
 		UserDetails user = User.withUsername("user")
