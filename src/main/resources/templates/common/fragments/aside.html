@@ -16,8 +16,7 @@
 					<i class="img-circle elevation-2 fa-2x fas fa-user-circle"></i>
 				</div>
 				<div class="info" style="margin-right: auto;">
-					<!--<a class="d-block" href="#" style="float: left;" th:text="${session.userInfo.userName}"></a>-->
-					<a class="d-block" href="#" style="float: left;" th:text="테스트"></a>
+					<a class="d-block" href="#" style="float: left;" th:text="${session.userInfo.username}"></a>
 					<div class="image" id="pwButton" style="color: #c2c7d0; cursor: pointer; float:left;">
 						<i class="fas fa-edit"></i>
 					</div>
@@ -34,7 +33,7 @@
 					<nav class="" style="border-bottom: 1px solid #4f5962;"></nav>
 					<li th:class="${'nav-item ' + (parentMenuPath == mainMenu.menuPath ? 'menu-is-opening menu-open' : '')}" th:each="mainMenu : ${menuInfoList}">
 						<a class="nav-link r-menu" th:href="${#strings.startsWith(mainMenu.menuPath, '/') ? mainMenu.menuPath : '#'}">
-							<i th:class="${mainMenu.icon + ' nav-icon'}"></i>
+							<i class="fas fa-book nav-icon"></i>
 							<p th:style="${menuPath == mainMenu.menuPath ? 'font-weight:bold; color:orange;' : ''}">
 								<th:block th:text="${mainMenu.menuName}"/>
 								<i class="fas fa-angle-left right" th:if="${!#strings.startsWith(mainMenu.menuPath, '/')}"></i>
@@ -43,7 +42,7 @@
 						<ul class="nav nav-treeview" th:if="${!#strings.startsWith(mainMenu.menuPath, '/')}">
 							<li class="nav-item" th:each="subMenu : ${mainMenu.children}" th:style="${menuPath == subMenu.menuPath ? 'font-weight:bold;' : ''}">
 								<a class="nav-link" th:href="${subMenu.menuPath}" th:title="${subMenu.icon}" >
-									<i th:class="${(menuPath == subMenu.menuPath ? 'fas fa-dot-circle' : subMenu.icon) + ' nav-icon'}"></i>
+									<i th:class="${(menuPath == subMenu.menuPath ? 'fas fa-dot-circle' : 'fas fa-circle') + ' nav-icon'}"></i>
 									<p th:style="${menuPath == subMenu.menuPath ? 'color:orange;' : ''}">
 										<th:block th:text="${subMenu.menuName}"/>
 									</p>

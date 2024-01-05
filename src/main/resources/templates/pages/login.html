@@ -30,7 +30,7 @@
 						<!-- CSRF -->
 						<!--<input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>-->
 						<div class="input-group mb-3">
-							<input autofocus class="form-control" id="username" name="username" placeholder="username" type="text">
+							<input autofocus class="form-control" id="userId" name="userId" placeholder="id" type="text">
 							<div class="input-group-append">
 								<div class="input-group-text">
 									<span class="fas fa-location-arrow"></span>
@@ -38,7 +38,7 @@
 							</div>
 						</div>
 						<div class="input-group mb-3">
-							<input class="form-control" id="password" name="password" placeholder="password" type="password">
+							<input class="form-control" id="userPassword" name="userPassword" placeholder="password" type="password">
 							<div class="input-group-append">
 								<div class="input-group-text">
 									<span class="fas fa-lock"></span>
@@ -67,7 +67,7 @@
 
 			document.addEventListener("DOMContentLoaded", () => {
 				if (StringUtil.isNotEmpty(resultMessage)) {
-					$("#username").select();
+					$("#userId").select();
 					Swal.fire({icon : "error", title : "로그인 실패", html : resultMessage});
 				}
 			});

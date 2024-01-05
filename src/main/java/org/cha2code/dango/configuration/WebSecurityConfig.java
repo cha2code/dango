@@ -2,43 +2,55 @@ package org.cha2code.dango.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig {
+
+	private final UserDetailsService userDetailsService;
+	private final BCryptPasswordEncoder passwordEncoder;
+
+	public WebSecurityConfig(UserDetailsService userDetailsService, BCryptPasswordEncoder passwordEncoder) {
+		this.userDetailsService = userDetailsService;
+		this.passwordEncoder = passwordEncoder;
+	}
+
 	@Bean
 	public SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception {
 		http.cors(AbstractHttpConfigurer::disable)
-		    .csrf(AbstractHttpConfigurer::disable)
-		    .headers((headers) -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
+		    .csrf(AbstractHttpConfigurer::disable);
 
 		http.authorizeHttpRequests((request -> request
-				    .requestMatchers(
+					.requestMatchers(
 							new AntPathRequestMatcher("/common/**"),
 							new AntPathRequestMatcher("/dist/**"),
 							new AntPathRequestMatcher("/js/**"),
 							new AntPathRequestMatcher("/plugins"),
 							new AntPathRequestMatcher("/common/**")
-				    ).permitAll()
+					).permitAll()
 				    .requestMatchers(
-						    new AntPathRequestMatcher("/")).hasAuthority("admin")
+						    new AntPathRequestMatcher("/")).hasAuthority("ROLE_admin")
 				    .anyRequest().authenticated()
 		    ));
 
 
 		 http.formLogin(form -> form
 				 .loginPage("/login")
+				 .usernameParameter("userId")
+				 .passwordParameter("userPassword")
 				 .successHandler((request, response, authentication) -> {
+					 request.getSession().setAttribute("userInfo", authentication.getPrincipal());
+
 					 System.out.println("authentication : " + authentication.getName());
 					 response.sendRedirect("/");
 				 })
@@ -53,10 +65,20 @@ public class WebSecurityConfig {
 		return http.build();
 	}
 
+
+	@Bean
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+		authenticationProvider.setUserDetailsService(userDetailsService);
+		authenticationProvider.setPasswordEncoder(passwordEncoder);
+		return authenticationProvider;
+	}
+
 	/*
 	* 하단 코드는 테스트용으로, DB연동 성공시 반드시 삭제할 것
 	*/
 
+	/*
 	@Bean
 	public InMemoryUserDetailsManager userDetailsService() {
 		UserDetails admin = User.withUsername("admin")
@@ -69,5 +91,5 @@ public class WebSecurityConfig {
 		                       .build();
 
 		return new InMemoryUserDetailsManager(admin, user);
-	}
+	}*/
 }

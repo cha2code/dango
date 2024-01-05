@@ -41,6 +41,9 @@ create table menu_role
 (
     menu_seq    int unsigned primary key comment '권한별 접근 메뉴',
     role_code   varchar(40) not null comment '권한코드',
+    # 오늘 요거랑 동일한 구조로 플젝 개발하고 있었는데 솔직히 지금 주석다는 부분 아래 4개 쓸데없음
+    # 굉장히 귀찮기만 함;
+    # 씁...이란 단어가 입에서 나오는 순간 삭제 ㄱㄱ
     create_user varchar(40) not null comment '생성자',
     create_date datetime default current_timestamp comment '생성일자',
     modify_user varchar(40) comment '수정자',

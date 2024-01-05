@@ -1,11 +1,13 @@
 spring:
   datasource:
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #url: ENC(mxfqyGW1wwQceyUmZXJ8HM1nUNEFpp7qRsg7bXOYxDUdm3oq6hVKVRTRdFvwk0io)
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:./dangoDB;mode=MySQL;AUTO_SERVER=TRUE
-    username: dangodang
-    password: dango2312!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dangoDB
+    username: ENC(wCGNI07D94baaXkkFlE4uz11xQpsPBEv)
+    password: ENC(VFURZq/xW7Fn76tf88z2x1XQnuf+I6f7)
+    #driver-class-name: org.h2.Driver
+    #url: jdbc:h2:./dangoDB;mode=MySQL;AUTO_SERVER=TRUE
+    #username: dangodang
+    #password: dango2312!
   jpa:
     hibernate:
       ddl-auto: none
@@ -14,15 +16,6 @@ spring:
     show-sql: true
   thymeleaf:
     cache: false
-  sql:
-    init:
-      mode: embedded
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-      settings:
-        web-allow-others: true
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor

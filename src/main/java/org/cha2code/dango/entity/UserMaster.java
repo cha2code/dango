@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class UserMaster extends BaseAuditorEntity {
 	@Id
 	@Column(name = "user_id", nullable = false, length = 40)
-	private String userId;
+	private String username;
 
 	@Column(name = "user_password", nullable = false)
 	private String userPassword;
@@ -37,7 +37,7 @@ public class UserMaster extends BaseAuditorEntity {
 	private LocalDateTime passwordModifiedAt;
 
 	public UserMasterDto toDTO() {
-		return new UserMasterDto(userId,
+		return new UserMasterDto(username,
 		                         "",
 		                         nickname,
 		                         email,

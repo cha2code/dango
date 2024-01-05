@@ -1,10 +1,7 @@
 package org.cha2code.dango.configuration;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.iv.RandomIvGenerator;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class JasyptConfigTest {
 
@@ -12,11 +9,11 @@ class JasyptConfigTest {
     void stringEncryptor() {
 
         StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
-        encryptor.setPassword("password");
+        encryptor.setPassword("!dango2312");
 
         System.out.println("url : " + encryptor.encrypt("jdbc:mysql://localhost:3306/dangoDB"));
         System.out.println("username : " + encryptor.encrypt("dangodang"));
-        System.out.println("password : " + encryptor.encrypt("!dango2312"));
+        System.out.println("password : " + encryptor.encrypt("dango2312"));
 
         System.out.println("");
 
