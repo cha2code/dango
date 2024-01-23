@@ -7,8 +7,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+	/**
+	 * ControllerInterceptor를 위한 Bean 등록
+	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new ControllerInterceptor());
+		// application내에 Interceptor 등록
+		registry.addInterceptor(new ControllerInterceptor())
+				// Interceptor 적용 제외
+				.excludePathPatterns("/js/**", "/plugins/**", "/common/**", "/dist/**",
+				                     "/favicon.ico", "/error", "/login");
 	}
 }
