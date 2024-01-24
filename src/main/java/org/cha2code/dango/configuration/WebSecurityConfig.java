@@ -35,7 +35,7 @@ public class WebSecurityConfig {
 							new AntPathRequestMatcher("/common/**"),
 							new AntPathRequestMatcher("/dist/**"),
 							new AntPathRequestMatcher("/js/**"),
-							new AntPathRequestMatcher("/plugins"),
+							new AntPathRequestMatcher("/plugins/**"),
 							new AntPathRequestMatcher("/common/**")
 					).permitAll()
 				    .requestMatchers(
