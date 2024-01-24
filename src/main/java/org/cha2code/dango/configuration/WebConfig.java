@@ -17,6 +17,6 @@ public class WebConfig implements WebMvcConfigurer {
 		registry.addInterceptor(new ControllerInterceptor())
 				// Interceptor 적용 제외
 				.excludePathPatterns("/js/**", "/plugins/**", "/common/**", "/dist/**",
-				                     "/favicon.ico", "/error", "/login");
+				                     "/favicon.ico", "/error", "/login", "/");
 	}
 }

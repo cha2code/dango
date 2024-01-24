@@ -28,15 +28,19 @@ public class ControllerInterceptor implements HandlerInterceptor {
 		// security session에 있는 user 정보 저장
 		Authentication userAuth = SecurityContextHolder.getContext().getAuthentication();
 
+		// 로그인 한 사용자 처리
+		if(userAuth != null) {
+			response.sendRedirect(requestURI);
+		}
 
-		// 로그인 하지 않은 사용자 처리
-		if(userAuth == null) {
+		// 로그인 안 한 사용자 처리
+		else {
 			response.sendRedirect("/login");
-			return false;
 		}
 
 		return true;
 	}
+
 	// 사용자 요청 처리 후(Controller 처리 완료 후)
 	@Override
 	public void postHandle(HttpServletRequest request,
