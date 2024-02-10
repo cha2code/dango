@@ -1,9 +1,13 @@
 package org.cha2code.dango.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,18 +17,21 @@ import org.hibernate.annotations.DynamicUpdate;
 @Getter
 @Entity
 @Table(name = "menu_role")
+@IdClass(MenuRoleId.class)
 public class MenuRole extends BaseAuditorEntity {
-	@EmbeddedId
-	private MenuRoleId id;
+	@Id
+	@Column(name = "menu_seq", columnDefinition = "int UNSIGNED not null")
+	private Long menuSeq;
 
-	@MapsId("menuSeq")
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "menu_seq", nullable = false)
-	private MenuMaster menuSeq;
+	@Id
+	@Column(name = "role_code", nullable = false, length = 40)
+	private String roleCode;
 
-	@MapsId("roleCode")
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "role_code", nullable = false)
-	private RoleMaster roleCode;
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "menu_seq", nullable = false, insertable = false, updatable = false)
+	private MenuMaster menuInfo;
 
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "role_code", nullable = false, insertable = false, updatable = false)
+	private RoleMaster roleInfo;
 }

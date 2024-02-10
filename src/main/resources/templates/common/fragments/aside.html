@@ -31,19 +31,19 @@
 			<nav class="mt-2">
 				<ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
 					<nav class="" style="border-bottom: 1px solid #4f5962;"></nav>
-					<li th:class="${'nav-item ' + (parentMenuPath == mainMenu.menuPath ? 'menu-is-opening menu-open' : '')}" th:each="mainMenu : ${menuInfoList}">
-						<a class="nav-link r-menu" th:href="${#strings.startsWith(mainMenu.menuPath, '/') ? mainMenu.menuPath : '#'}">
+					<li th:class="${'nav-item ' + (parentMenuPath == mainMenu.menuUrl ? 'menu-is-opening menu-open' : '')}" th:each="mainMenu : ${menuInfoList}">
+						<a class="nav-link r-menu" th:href="${#strings.startsWith(mainMenu.menuUrl, '/') ? mainMenu.menuUrl : '#'}">
 							<i class="fas fa-book nav-icon"></i>
-							<p th:style="${menuPath == mainMenu.menuPath ? 'font-weight:bold; color:orange;' : ''}">
+							<p th:style="${menuPath == mainMenu.menuUrl ? 'font-weight:bold; color:orange;' : ''}">
 								<th:block th:text="${mainMenu.menuName}"/>
-								<i class="fas fa-angle-left right" th:if="${!#strings.startsWith(mainMenu.menuPath, '/')}"></i>
+								<i class="fas fa-angle-left right" th:if="${!#strings.startsWith(mainMenu.menuUrl, '/')}"></i>
 							</p>
 						</a>
-						<ul class="nav nav-treeview" th:if="${!#strings.startsWith(mainMenu.menuPath, '/')}">
-							<li class="nav-item" th:each="subMenu : ${mainMenu.children}" th:style="${menuPath == subMenu.menuPath ? 'font-weight:bold;' : ''}">
-								<a class="nav-link" th:href="${subMenu.menuPath}" th:title="${subMenu.icon}" >
-									<i th:class="${(menuPath == subMenu.menuPath ? 'fas fa-dot-circle' : 'fas fa-circle') + ' nav-icon'}"></i>
-									<p th:style="${menuPath == subMenu.menuPath ? 'color:orange;' : ''}">
+						<ul class="nav nav-treeview" th:if="${!#strings.startsWith(mainMenu.menuUrl, '/')}">
+							<li class="nav-item" th:each="subMenu : ${mainMenu.children}" th:style="${menuPath == subMenu.menuUrl ? 'font-weight:bold;' : ''}">
+								<a class="nav-link" th:href="${subMenu.menuUrl}" th:title="${subMenu.icon}" >
+									<i th:class="${(menuPath == subMenu.menuUrl ? 'fas fa-dot-circle' : 'fas fa-circle') + ' nav-icon'}"></i>
+									<p th:style="${menuPath == subMenu.menuUrl ? 'color:orange;' : ''}">
 										<th:block th:text="${subMenu.menuName}"/>
 									</p>
 								</a>

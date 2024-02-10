@@ -1,11 +1,10 @@
-package org.cha2code.dango.controller;
+package org.cha2code.dango.domain;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -16,11 +15,11 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class GridData<T> {
 	List<T> contents;
-	PageInfo pagenation;
+	PageInfo pagination;
 
 	public GridData(List<T> contents, int page, int totalCount) {
 		this.contents = contents;
-		this.pagenation = new PageInfo(page, totalCount);
+		this.pagination = new PageInfo(page, totalCount);
 	}
 
 	public GridData(List<T> contents) {
@@ -28,6 +27,4 @@ public class GridData<T> {
 	}
 }
 
-
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 record PageInfo(int page, int totalCount) {}

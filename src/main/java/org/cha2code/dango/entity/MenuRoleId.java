@@ -1,10 +1,9 @@
 package org.cha2code.dango.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
 import lombok.*;
 import org.hibernate.Hibernate;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,7 +12,6 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
-@Embeddable
 public class MenuRoleId implements Serializable {
 	private static final long serialVersionUID = -6169434822932528951L;
 	@Column(name = "menu_seq", columnDefinition = "int UNSIGNED not null")

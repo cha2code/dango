@@ -1,10 +1,14 @@
 package org.cha2code.dango.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-import org.cha2code.dango.entity.BaseAuditorEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.cha2code.dango.dto.RoleMasterDto;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,4 +28,9 @@ public class RoleMaster extends BaseAuditorEntity {
 
 	@Column(name = "memo", length = 200)
 	private String memo;
+
+	@Transient
+	public RoleMasterDto toDTO() {
+		return new RoleMasterDto(roleCode, roleName, memo);
+	}
 }

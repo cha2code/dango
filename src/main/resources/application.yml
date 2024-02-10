@@ -13,7 +13,7 @@ spring:
       ddl-auto: none
     defer-datasource-initialization: true
     database-platform: org.hibernate.dialect.MySQLDialect
-    show-sql: true
+    show-sql: false
   thymeleaf:
     cache: false
 jasypt:

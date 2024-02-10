@@ -1,10 +1,14 @@
 package org.cha2code.dango.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-import org.cha2code.dango.entity.BaseAuditorEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.cha2code.dango.dto.MenuMasterDto;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,4 +35,9 @@ public class MenuMaster extends BaseAuditorEntity {
 
 	@Column(name = "menu_sort", nullable = false)
 	private Integer menuSort;
+
+	@Transient
+	public MenuMasterDto toDTO() {
+		return new MenuMasterDto(id, menuName, menuUrl, parentMenu, menuSort);
+	}
 }

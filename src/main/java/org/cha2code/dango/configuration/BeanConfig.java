@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -70,5 +71,14 @@ public class BeanConfig {
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(10);
+	}
+
+	/**
+	 * Thymeleaf Layout 라이브러리 사용을 위한 Bean 클래스 추가
+	 * @return LayoutDialect
+	 */
+	@Bean
+	public LayoutDialect layoutDialect() {
+		return new LayoutDialect();
 	}
 }
