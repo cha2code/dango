@@ -315,7 +315,7 @@ $(document).ready(function () {
 	roleInfoGrid = new tui.Grid(roleInfoGridOption);
 	roleMenuGrid = new tui.Grid(roleMenuGridOption);
 
-	// userId를 disable 한다.
+	// roleCode를 disable 한다.
 	roleInfoGrid.disableColumn('roleCode');
 
 	// 서버에서 응답을 받았을 경우
