@@ -3,7 +3,7 @@
 	<!-- Main Sidebar Container -->
 	<aside class="main-sidebar sidebar-dark-primary elevation-4" th:fragment="aside">
 		<!-- Brand Logo -->
-		<a class="brand-link" href="../main">
+		<a class="brand-link" href="../">
 			<img alt="AdminLTE Logo" class="brand-image img-circle elevation-3" src="/dist/img/AdminLTELogo.png" style="opacity: 1;border-radius: 0.4em;">
 			<span class="brand-text font-weight-light">Dango Admin</span>
 		</a>
@@ -41,7 +41,7 @@
 						</a>
 						<ul class="nav nav-treeview" th:if="${!#strings.startsWith(mainMenu.menuUrl, '/')}">
 							<li class="nav-item" th:each="subMenu : ${mainMenu.children}" th:style="${menuPath == subMenu.menuUrl ? 'font-weight:bold;' : ''}">
-								<a class="nav-link" th:href="${subMenu.menuUrl}" th:title="${subMenu.icon}" >
+								<a class="nav-link" th:href="${subMenu.menuUrl}" style="padding-left: 30px;">
 									<i th:class="${(menuPath == subMenu.menuUrl ? 'fas fa-dot-circle' : 'fas fa-circle') + ' nav-icon'}"></i>
 									<p th:style="${menuPath == subMenu.menuUrl ? 'color:orange;' : ''}">
 										<th:block th:text="${subMenu.menuName}"/>

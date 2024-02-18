@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko"
+      layout:decorate="~{common/layout/defaultLayout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>권한 관리</title>
+    <!--/*Inline Custom CSS Library import */-->
+    <th:block layout:fragment="contentCss">
+    </th:block>
+
+    <!--/*Inline Custom JS Library import */-->
+    <th:block layout:fragment="contentScript">
+    </th:block>
+
+    <!--/*Inline Custom CSS Code*/-->
+    <style rel="stylesheet" th:inline="css">
+    </style>
+
+    <!--/*Inline Custom JS Code*/-->
+    <script th:inline="javascript">
+        const menuList = [[ ${menuList }]];
+    </script>
+    <script src="/js/management/role.js"></script>
+</head>
+<body>
+    <!-- Main content -->
+    <div layout:fragment="content" style="height:90vh">
+        <section class="content h-100">
+            <div class="container-fluid h-100">
+                <!-- /.row -->
+                <div class="row h-100">
+                    <div class="col-7">
+                        <div class="card" style="height:97%;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <label for="searchKeyword">검색조건</label>
+                                        <input type="text" id="searchKeyword" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="dt-buttons btn-group flex-wrap" style="float:right;">
+                                            <button id="updateRoleInfoBtn" class="btn btn-sm btn-secondary" type="button"><span>추가</span></button>
+                                            <button id="appendRoleInfoBtn" class="btn btn-sm btn-secondary" type="button"><span>저장</span></button>
+                                            <button id="deleteRoleInfoBtn" class="btn btn-sm btn-secondary" type="button"><span>삭제</span></button>
+                                            <button id="readRoleInfoBtn" class="btn btn-sm btn-outline-info" type="button"><span>조회</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row" style="height:85%;">
+                                    <div class="col-12">
+                                        <div id="grid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="dt-buttons btn-group flex-wrap" style="float:right;">
+                                            <button id="updateRoleMenuBtn" class="btn btn-sm btn-outline-info" type="button"><span>추가</span></button>
+                                            <button id="appendRoleMenuBtn" class="btn btn-sm btn-outline-info" type="button"><span>저장</span></button>
+                                            <button id="deleteRoleMenuBtn" class="btn btn-sm btn-outline-info" type="button"><span>삭제</span></button>
+                                            <button id="readRoleMenuBtn" class="btn btn-sm btn-outline-info" type="button"><span>조회</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div id="menuGrid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+    </div>
+    <!-- /.content -->
+</body>
+</html>

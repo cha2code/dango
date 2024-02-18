@@ -177,18 +177,9 @@ const roleInfoGridOption = {
 			editor : 'text'
 		},
 		{
-			header : '권한 사용 여부',
-			name : 'useYn',
-			editor : {
-				type : 'select',
-				options : {
-					listItems : [
-						{text : '사용', value : true},
-						{text : '미사용', value : false}
-					]
-				}
-			},
-			formatter : (rowData) => onChangeFlag("useYn", rowData.value)
+			header : '메모',
+			name : 'memo',
+			editor : 'text'
 		},
 		{
 			header : '생성자',
@@ -238,7 +229,7 @@ const roleMenuGridOption = {
 			editor : {
 				type : 'select',
 				options : {
-					listItems : menuList
+					listItems : []
 				}
 			},
 			validation : {

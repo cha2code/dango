@@ -518,10 +518,7 @@ class DangoGridManager {
             if (initOption === null || initOption === undefined) {
                 initOption = this.getDefaultOption();
 
-                let dsConfig = this.dataSource;
-                dsConfig.initialRequest = this.isInitialRequest;
-
-                initOption.data = dsConfig;
+                initOption.data = this.dataSource;
                 initOption.el = document.getElementById(this.domId);
                 initOption.columns = this.columnList;
 
@@ -546,6 +543,8 @@ class DangoGridManager {
 
                 initOption.columns = this.columnList;
             }
+
+            initOption.data.initialRequest = this.isInitialRequest;
 
             if (initOption.hasOwnProperty("data")
                 && initOption.hasOwnProperty("el")
@@ -730,6 +729,14 @@ class DangoGridManager {
         }
 
         return this.grid.getRow(rowKey);
+    }
+
+    getSelectedRow() {
+        if (!this.isInit) {
+            throw "Grid가 초기화되지 않았습니다.";
+        }
+
+        return grid.getRow(grid.getFocusedCell().rowKey);
     }
 
     getRowByIndex(index) {

@@ -9,6 +9,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,8 +37,16 @@ public class MenuMaster extends BaseAuditorEntity {
 	@Column(name = "menu_sort", nullable = false)
 	private Integer menuSort;
 
+	@Column(name = "used", nullable = false)
+	private boolean used = false;
+
 	@Transient
 	public MenuMasterDto toDTO() {
-		return new MenuMasterDto(id, menuName, menuUrl, parentMenu, menuSort);
+		return new MenuMasterDto(id, menuName, menuUrl, parentMenu, menuSort, used);
+	}
+
+	@Transient
+	public MenuMasterDto toDTO(List<MenuMasterDto> children) {
+		return new MenuMasterDto(id, menuName, menuUrl, parentMenu, menuSort, used, children);
 	}
 }

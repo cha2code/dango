@@ -8,7 +8,9 @@ import org.cha2code.dango.entity.MenuRole;
 import org.cha2code.dango.repository.MenuMasterRepository;
 import org.cha2code.dango.repository.MenuRoleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -23,6 +25,54 @@ public class MenuService {
 		           .stream()
 		           .map(MenuMaster::toDTO)
 		           .toList();
+	}
+
+	public List<MenuMasterDto> findRootMenus() {
+		List<MenuMaster> rootMenuList = repo.findAllByUsedIsTrueAndParentMenuIs(1);
+
+		List<MenuMasterDto> resultList = new ArrayList<>();
+
+		if (!CollectionUtils.isEmpty(rootMenuList)) {
+			for (MenuMaster parent : rootMenuList) {
+				List<MenuMasterDto> children = repo.findAllByUsedIsTrueAndParentMenuIs(parent.getId().intValue())
+				                                   .stream()
+				                                   .map(MenuMaster::toDTO)
+				                                   .toList();
+
+				MenuMasterDto dto = parent.toDTO(children);
+
+				resultList.add(dto);
+			}
+		}
+
+		return resultList;
+	}
+
+	public List<MenuMasterDto> findRootMenuByRoleCode(String roleCode) {
+		var accessibleMenus = menuRoleRepo.findAllByRoleCodeIs(roleCode)
+		                                  .stream()
+		                                  .map(MenuRole::getMenuSeq)
+		                                  .toList();
+
+		List<MenuMaster> rootMenuList = repo.findAllByUsedIsTrueAndParentMenuIs(1);
+
+		List<MenuMasterDto> resultList = new ArrayList<>();
+
+		if (!CollectionUtils.isEmpty(rootMenuList)) {
+			for (MenuMaster parent : rootMenuList) {
+				List<MenuMasterDto> children = repo.findAllByUsedIsTrueAndParentMenuIs(parent.getId().intValue())
+				                                   .stream()
+				                                   .map(MenuMaster::toDTO)
+				                                   .filter(dto -> accessibleMenus.contains(dto.menuSeq()))
+				                                   .toList();
+
+				if (!children.isEmpty()) {
+					resultList.add(parent.toDTO(children));
+				}
+			}
+		}
+
+		return resultList;
 	}
 
 	public List<MenuMasterDto> findAllByRoleCode(String roleCode) {

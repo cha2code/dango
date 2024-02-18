@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 class StringUtil {
 	static isEmpty(source) {
-		return source === null || source === undefined || source === "" || source.replaceAll(' ', '').length === 0;
+		return source === null || source === undefined || source === "" || source.toString().replaceAll(' ', '').length === 0;
 	}
 
 	static isNotEmpty(source) {

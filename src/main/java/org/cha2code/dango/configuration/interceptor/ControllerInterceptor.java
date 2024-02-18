@@ -40,17 +40,20 @@ public class ControllerInterceptor implements HandlerInterceptor {
 			response.sendRedirect("/login");
 		}
 
-
-		// 로그인 한 사용자 처리
-		request.setAttribute("parentMenuPath", "");
-
 		// 로그인 한 사용자는 반드시 권한을 가지고 있으므로, 별도 검증 없이 권한 객체 취득
 		@SuppressWarnings("OptionalGetWithoutIsPresent")
 		GrantedAuthority grantedAuthority = userAuth.getAuthorities().stream().findFirst().get();
 
-		List<MenuMasterDto> menuList = menuService.findAllByRoleCode(grantedAuthority.getAuthority()
-		                                                                             .replace("ROLE_", ""));
+		// 로그인 한 사용자 처리
+		request.setAttribute("parentMenuPath", requestURI.substring(1, requestURI.lastIndexOf("/")));
 
+		/*List<MenuMasterDto> menuList = menuService.findAllByRoleCode(grantedAuthority.getAuthority()
+		                                                                             .replace("ROLE_", ""));*/
+		List<MenuMasterDto> menuList = menuService.findRootMenuByRoleCode(grantedAuthority.getAuthority()
+		                                                                                  .replace("ROLE_", ""));
+
+
+		request.setAttribute("menuPath", requestURI);
 		request.setAttribute("menuInfoList", menuList);
 
 		return true;
