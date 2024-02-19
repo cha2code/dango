@@ -31,6 +31,12 @@ public class RoleMaster extends BaseAuditorEntity {
 
 	@Transient
 	public RoleMasterDto toDTO() {
-		return new RoleMasterDto(roleCode, roleName, memo);
+		return new RoleMasterDto(roleCode,
+		                         roleName,
+		                         memo,
+		                         getCreateUser(),
+		                         getCreateDate(),
+		                         getModifyUser(),
+		                         getModifyDate());
 	}
 }

@@ -37,7 +37,7 @@ $(document).ready(() => {
         {header : '생성자', name : 'createUser', hidden:false},
         {header : '생성일시', name : 'createDate', hidden:false, defaultValue : '', formatter : toDateFormatter},
         {header : '수정자', name : 'modifyUser', hidden:false},
-        {header : '수정일시', name : 'modifyDate', hidden:false, defaultValue : '', formatter : toDateFormatter},
+        {header : '수정일시', name : 'modifyDate', hidden:false, defaultValue : '', formatter : toDateFormatter}
     ];
 
     // 사용자 ID 수정 불가처리
