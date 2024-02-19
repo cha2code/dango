@@ -26,11 +26,11 @@ public class ManagementPageController {
 		return "pages/management/user";
 	}
 
-	@GetMapping("/auth")
+	@GetMapping("/role")
 	public String authPage(Model model) {
 		model.addAttribute("menuList", Collections.emptyList());
 
-		return "pages/management/auth";
+		return "pages/management/role";
 	}
 
 	@GetMapping("/menu")
