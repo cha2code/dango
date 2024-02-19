@@ -45,7 +45,9 @@ public class ControllerInterceptor implements HandlerInterceptor {
 		GrantedAuthority grantedAuthority = userAuth.getAuthorities().stream().findFirst().get();
 
 		// 로그인 한 사용자 처리
-		request.setAttribute("parentMenuPath", requestURI.substring(1, requestURI.lastIndexOf("/")));
+		if(!requestURI.equals("/")){
+			request.setAttribute("parentMenuPath", requestURI.substring(1, requestURI.lastIndexOf("/")));
+		}
 
 		/*List<MenuMasterDto> menuList = menuService.findAllByRoleCode(grantedAuthority.getAuthority()
 		                                                                             .replace("ROLE_", ""));*/
