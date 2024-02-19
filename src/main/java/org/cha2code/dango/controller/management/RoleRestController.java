@@ -4,11 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.cha2code.dango.domain.GridData;
 import org.cha2code.dango.domain.GridPagination;
+import org.cha2code.dango.domain.GridRequest;
 import org.cha2code.dango.domain.GridResult;
 import org.cha2code.dango.dto.RoleMasterDto;
 import org.cha2code.dango.entity.RoleMaster;
 import org.cha2code.dango.service.RoleService;
 import org.springframework.data.domain.Page;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/role/")
 @RequiredArgsConstructor
-public class AuthRestController {
+public class RoleRestController {
 	private final RoleService service;
 
 	@GetMapping("{roleCode}")
@@ -41,5 +43,28 @@ public class AuthRestController {
 		                                              paging.getPage(),
 		                                              (int) roleDataList.getTotalElements());
 		return new GridResult(true, data);
+	}
+
+	@PutMapping
+	public GridResult updateData(@RequestBody GridRequest<RoleMasterDto> requestData) {
+		boolean result = false;
+
+		if (!CollectionUtils.isEmpty(requestData.getCreatedRows())) {
+			result = service.createData(requestData.getCreatedRows());
+		}
+
+		if (!CollectionUtils.isEmpty(requestData.getUpdatedRows())) {
+			service.updateData(requestData.getUpdatedRows());
+
+			result = true;
+		}
+
+		if (!CollectionUtils.isEmpty(requestData.getDeletedRows())) {
+			service.deleteData(requestData.getDeletedRows());
+
+			result = true;
+		}
+
+		return new GridResult(result);
 	}
 }

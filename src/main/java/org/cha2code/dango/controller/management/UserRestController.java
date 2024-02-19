@@ -1,6 +1,5 @@
 package org.cha2code.dango.controller.management;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.cha2code.dango.domain.GridData;
@@ -21,7 +20,6 @@ import java.util.List;
 @RequestMapping("/api/user/")
 @RequiredArgsConstructor
 public class UserRestController {
-	private final ObjectMapper objectMapper;
 	private final UserService service;
 
 	@GetMapping("{userId}") // /api/user/tester_admin

@@ -98,7 +98,7 @@ $(document).ready(() => {
     $('#appendRoleInfoBtn').on('click', () => {
         let rowData = gridMgr.addRow();
 
-        grid.enableCell(rowData.rowKey, 'userName');
+        grid.enableCell(rowData.rowKey, 'roleCode');
     });
 
     // noinspection JSCheckFunctionSignatures
